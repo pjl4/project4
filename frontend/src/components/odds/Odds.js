@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './odds.css';
 import Calculation from '../calculation/Calculation';
 import { Button, Row, Container, Table } from 'react-bootstrap';
+
 class Odds extends Component {
 	constructor(props) {
 		super(props);

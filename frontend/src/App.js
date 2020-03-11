@@ -59,7 +59,18 @@ class App extends React.Component {
 					></SportsList>
 				)}
 				<Switch>
-					<Route exact path="/login" component={Login}></Route>
+					<Route
+						exact
+						path="/login"
+						render={(routerProps) => {
+							return (
+								<Login
+									props={routerProps}
+									setHome={this.setHome}
+								></Login>
+							);
+						}}
+					></Route>
 					<Route exact path="/user" component={Create}></Route>
 					<Route
 						exact
@@ -81,11 +92,15 @@ class App extends React.Component {
 				)}
 				{this.state.formattedGames.length === 0 &&
 					this.state.home &&
-					!this.state.loading && <h1>No Odds data to display</h1>}
+					!this.state.loading &&
+					localStorage.id && <h1>No Odds data to display</h1>}
 				{this.state.formattedGames.length > 0 &&
 					this.state.formattedGames.map((game, index) => (
 						<Odds key={index} game={game}></Odds>
 					))}
+				{!localStorage.id && this.state.home && (
+					<h3>Log In to see in season sports</h3>
+				)}
 			</div>
 		);
 	}

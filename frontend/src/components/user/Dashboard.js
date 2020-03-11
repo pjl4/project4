@@ -9,7 +9,8 @@ class Dashboard extends Component {
 		return (
 			<div>
 				<Button
-					href="/moviesFrontend"
+					variant="outline-danger"
+					href="/"
 					onClick={() => {
 						localStorage.clear();
 					}}

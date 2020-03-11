@@ -7,7 +7,7 @@ class Header extends Component {
 			<Nav>
 				<Nav.Item>
 					<a href="/">
-						<h1>Most Valuable Picks</h1>
+						<h1>Guarenteed Green</h1>
 					</a>
 				</Nav.Item>
 				<Nav.Item className="ml-auto">

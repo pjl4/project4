@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 const axios = require('axios');
 
 class Login extends Component {
@@ -12,6 +13,9 @@ class Login extends Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	componentDidMount() {
+		this.props.setHome();
 	}
 	handleChange = (evt) => {
 		evt.preventDefault();
@@ -34,6 +38,7 @@ class Login extends Component {
 					localStorage.setItem('id', res.data._id);
 					localStorage.setItem('firstName', res.data.firstName);
 					this.props.history.push('/');
+					window.location.reload();
 				}
 			});
 	};
@@ -72,4 +77,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default withRouter(Login);

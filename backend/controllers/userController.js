@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../db/models/UserModel');
 
+const bcrypt = require('bcrypt-nodejs');
 router.post('/', (req, res) => {
 	User.findOne({ email: req.body.email }).then((user) => {
 		if (user) {
@@ -10,24 +11,18 @@ router.post('/', (req, res) => {
 				error: 'Email in use'
 			});
 		} else {
-			User.findOne({ userName: req.body.userName }).then((user) => {
-				if (user) {
-					res.json({
-						error: 'Username in use'
-					});
-				} else {
-					User.create(req.body)
-						.then((user) => res.json(user))
-						.catch(console.error);
-				}
-			});
+			req.body.password = bcrypt.hashSync(req.body.password);
+			User.create(req.body)
+				.then((user) => res.json(user))
+				.catch(console.error);
 		}
 	});
 });
+
 router.post('/login', (req, res) => {
 	User.findOne({ email: req.body.email }).then((user) => {
 		if (user) {
-			if (req.body.password === user.password) {
+			if (bcrypt.compareSync(req.body.password, user.pwHash)) {
 				res.json(user);
 			} else {
 				res.json({

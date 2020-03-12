@@ -71,6 +71,9 @@ class Login extends Component {
 					>
 						Submit
 					</Button>
+					<Button variant="outline-primary" href="/user">
+						Create an Account
+					</Button>
 				</Form>
 			</Container>
 		);

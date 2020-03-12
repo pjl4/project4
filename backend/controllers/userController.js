@@ -11,8 +11,9 @@ router.post('/', (req, res) => {
 				error: 'Email in use'
 			});
 		} else {
-			req.body.password = bcrypt.hashSync(req.body.password);
-			User.create(req.body)
+			let createObj = req.body;
+			createObj.pwHash = bcrypt.hashSync(req.body.pwHash);
+			User.create(createObj)
 				.then((user) => res.json(user))
 				.catch(console.error);
 		}
@@ -20,21 +21,23 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-	User.findOne({ email: req.body.email }).then((user) => {
-		if (user) {
-			if (bcrypt.compareSync(req.body.password, user.pwHash)) {
-				res.json(user);
+	User.findOne({ email: req.body.email })
+		.then((user) => {
+			if (user) {
+				if (bcrypt.compareSync(req.body.password, user.pwHash)) {
+					res.json(user);
+				} else {
+					res.json({
+						error: 'Email or password was incorrect'
+					});
+				}
 			} else {
 				res.json({
 					error: 'Email or password was incorrect'
 				});
 			}
-		} else {
-			res.json({
-				error: 'Email or password was incorrect'
-			});
-		}
-	});
+		})
+		.catch(console.error);
 });
 router.get('/:id', (req, res) => {
 	User.findById(req.params.id)
@@ -44,8 +47,23 @@ router.get('/:id', (req, res) => {
 		.catch(console.error);
 });
 router.put('/:id', (req, res) => {
-	User.findByIdAndUpdate(req.params.id, req.body)
-		.then((user) => res.json(user))
+	User.findById(req.params.id)
+		.then((user) => {
+			if (user) {
+				if (bcrypt.compareSync(req.body.currentPassword, user.pwHash)) {
+					req.body.newPassword = bcrypt.hashSync(
+						req.body.newPassword
+					);
+					user.pwHash = req.body.newPassword;
+					user.save();
+					res.json(user);
+				} else {
+					res.json({
+						error: 'Old password was incorrect'
+					});
+				}
+			}
+		})
 		.catch(console.error);
 });
 router.delete('/:id', (req, res) => {

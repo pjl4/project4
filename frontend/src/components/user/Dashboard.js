@@ -17,6 +17,9 @@ class Dashboard extends Component {
 				>
 					Logout
 				</Button>
+				<Button variant="outline-info" href="/edit">
+					Change Password
+				</Button>
 			</div>
 		);
 	}

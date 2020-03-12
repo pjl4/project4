@@ -18,6 +18,9 @@ class Create extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+	componentDidMount() {
+		this.props.setHome();
+	}
 	handleChange = (evt) => {
 		evt.preventDefault();
 		let value = evt.target.value;
@@ -29,11 +32,10 @@ class Create extends Component {
 		if (this.state.password !== this.state.cPassword) {
 			this.setState({ localError: true });
 		}
-		let pwHash = bcrypt.hashSync(this.state.password);
 		let postObject = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
-			pwHash,
+			pwHash: this.state.password,
 			email: this.state.email
 		};
 		axios.post('http://localhost:8080/api/user', postObject).then((res) => {

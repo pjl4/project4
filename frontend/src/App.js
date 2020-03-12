@@ -7,6 +7,7 @@ import Create from './components/user/Create';
 import Dashboard from './components/user/Dashboard';
 import SportsList from './components/sports/SportsList';
 import Odds from './components/odds/Odds';
+import Edit from './components/user/Edit';
 import { ClipLoader } from 'react-spinners';
 import { css } from '@emotion/core';
 
@@ -71,7 +72,18 @@ class App extends React.Component {
 							);
 						}}
 					></Route>
-					<Route exact path="/user" component={Create}></Route>
+					<Route
+						exact
+						path="/user"
+						render={(routerProps) => {
+							return (
+								<Create
+									props={routerProps}
+									setHome={this.setHome}
+								></Create>
+							);
+						}}
+					></Route>
 					<Route
 						exact
 						path="/dashboard"
@@ -79,6 +91,13 @@ class App extends React.Component {
 							return (
 								<Dashboard setHome={this.setHome}></Dashboard>
 							);
+						}}
+					></Route>
+					<Route
+						exact
+						path="/edit"
+						render={() => {
+							return <Edit setHome={this.setHome}></Edit>;
 						}}
 					></Route>
 				</Switch>

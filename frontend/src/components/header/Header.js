@@ -6,14 +6,14 @@ class Header extends Component {
 		return (
 			<Nav>
 				<Nav.Item>
-					<a href="/">
+					<a href="/project4">
 						<h1>Guarenteed Green</h1>
 					</a>
 				</Nav.Item>
 				<Nav.Item className="ml-auto">
 					{!localStorage.id && (
 						<Button
-							href="/login"
+							href="/project4/login"
 							variant="outline-primary"
 							size="lg"
 						>
@@ -23,7 +23,9 @@ class Header extends Component {
 					{localStorage.firstName && (
 						<h3>
 							Welcome back,
-							<a href="/dashboard">{localStorage.firstName}</a>
+							<a href="/project4/dashboard">
+								{localStorage.firstName}
+							</a>
 						</h3>
 					)}
 				</Nav.Item>

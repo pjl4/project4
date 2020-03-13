@@ -10,14 +10,14 @@ class Dashboard extends Component {
 			<div>
 				<Button
 					variant="outline-danger"
-					href="/"
+					href="/project4/"
 					onClick={() => {
 						localStorage.clear();
 					}}
 				>
 					Logout
 				</Button>
-				<Button variant="outline-info" href="/edit">
+				<Button variant="outline-info" href="/project4/edit">
 					Change Password
 				</Button>
 			</div>

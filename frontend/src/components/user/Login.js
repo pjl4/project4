@@ -40,7 +40,7 @@ class Login extends Component {
 				} else {
 					localStorage.setItem('id', res.data._id);
 					localStorage.setItem('firstName', res.data.firstName);
-					this.props.history.push('/');
+					this.props.history.push('/project4');
 					window.location.reload();
 				}
 			});
@@ -74,7 +74,7 @@ class Login extends Component {
 					>
 						Submit
 					</Button>
-					<Button variant="outline-primary" href="/user">
+					<Button variant="outline-primary" href="/project4/user">
 						Create an Account
 					</Button>
 				</Form>

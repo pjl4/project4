@@ -49,7 +49,7 @@ class Create extends Component {
 				} else {
 					localStorage.setItem('id', res.data._id);
 					localStorage.setItem('firstName', res.data.firstName);
-					this.props.history.push('/');
+					this.props.history.push('/project4');
 				}
 			});
 	};

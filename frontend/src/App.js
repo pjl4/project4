@@ -29,7 +29,6 @@ class App extends React.Component {
 		};
 	}
 	setClickedSport = (clickedSport) => {
-		console.log('clicked sport');
 		this.setState(
 			{ clickedSport, loading: true, formattedGames: [] },
 			async () => {
@@ -38,7 +37,6 @@ class App extends React.Component {
 						`https://infinite-refuge-07856.herokuapp.com/api/sports/${clickedSport}`
 					)
 					.then((res) => {
-						console.log(res);
 						this.setState({
 							formattedGames: res.data,
 							loading: false

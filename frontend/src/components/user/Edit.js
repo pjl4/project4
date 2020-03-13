@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 const axios = require('axios');
-const bcrypt = require('bcrypt-nodejs');
 
 class Edit extends Component {
 	constructor(props) {

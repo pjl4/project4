@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 const axios = require('axios');
 
 class Login extends Component {
@@ -74,9 +74,11 @@ class Login extends Component {
 					>
 						Submit
 					</Button>
-					<Button variant="outline-primary" href="/project4/user">
-						Create an Account
-					</Button>
+					<Link to="/user">
+						<Button variant="outline-primary">
+							Create an Account
+						</Button>
+					</Link>
 				</Form>
 			</Container>
 		);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Nav, Button } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 class Header extends Component {
 	render() {
 		return (
@@ -12,20 +12,18 @@ class Header extends Component {
 				</Nav.Item>
 				<Nav.Item className="ml-auto">
 					{!localStorage.id && (
-						<Button
-							href="/project4/login"
-							variant="outline-primary"
-							size="lg"
-						>
-							Login
-						</Button>
+						<Link to="/login">
+							<Button variant="outline-primary" size="lg">
+								Login
+							</Button>
+						</Link>
 					)}
 					{localStorage.firstName && (
 						<h3>
 							Welcome back,
-							<a href="/project4/dashboard">
+							<Link to="/dashboard">
 								{localStorage.firstName}
-							</a>
+							</Link>
 						</h3>
 					)}
 				</Nav.Item>

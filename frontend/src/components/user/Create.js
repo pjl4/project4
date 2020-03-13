@@ -38,15 +38,20 @@ class Create extends Component {
 			pwHash: this.state.password,
 			email: this.state.email
 		};
-		axios.post('http://localhost:8080/api/user', postObject).then((res) => {
-			if (res.data.error) {
-				this.setState({ errors: res.data.error });
-			} else {
-				localStorage.setItem('id', res.data._id);
-				localStorage.setItem('firstName', res.data.firstName);
-				this.props.history.push('/');
-			}
-		});
+		axios
+			.post(
+				'https://infinite-refuge-07856.herokuapp.com/api/user',
+				postObject
+			)
+			.then((res) => {
+				if (res.data.error) {
+					this.setState({ errors: res.data.error });
+				} else {
+					localStorage.setItem('id', res.data._id);
+					localStorage.setItem('firstName', res.data.firstName);
+					this.props.history.push('/');
+				}
+			});
 	};
 	render() {
 		return (

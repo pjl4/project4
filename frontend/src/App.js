@@ -29,14 +29,14 @@ class App extends React.Component {
 		};
 	}
 	setClickedSport = (clickedSport) => {
-		console.log('clicked sport');
 		this.setState(
 			{ clickedSport, loading: true, formattedGames: [] },
 			async () => {
 				await axios
-					.get(`http://localhost:8080/api/sports/${clickedSport}`)
+					.get(
+						`https://infinite-refuge-07856.herokuapp.com/api/sports/${clickedSport}`
+					)
 					.then((res) => {
-						console.log(res);
 						this.setState({
 							formattedGames: res.data,
 							loading: false
@@ -51,10 +51,16 @@ class App extends React.Component {
 	};
 
 	render() {
+		let loadSports = localStorage.id && this.state.home;
+		let noOddsData =
+			this.state.formattedGames.length === 0 &&
+			this.state.home &&
+			!this.state.loading &&
+			localStorage.id;
 		return (
 			<div className="App">
 				<Header></Header>
-				{localStorage.id && this.state.home && (
+				{loadSports && (
 					<SportsList
 						setClickedSport={this.setClickedSport}
 					></SportsList>
@@ -109,17 +115,12 @@ class App extends React.Component {
 						loading={this.state.loading}
 					/>
 				)}
-				{this.state.formattedGames.length === 0 &&
-					this.state.home &&
-					!this.state.loading &&
-					localStorage.id && <h1>No Odds data to display</h1>}
+				{noOddsData && <h1>No Odds data to display</h1>}
 				{this.state.formattedGames.length > 0 &&
 					this.state.formattedGames.map((game, index) => (
 						<Odds key={index} game={game}></Odds>
 					))}
-				{!localStorage.id && this.state.home && (
-					<h3>Log In to see in season sports</h3>
-				)}
+				{!loadSports && <h3>Log In to see in season sports</h3>}
 			</div>
 		);
 	}

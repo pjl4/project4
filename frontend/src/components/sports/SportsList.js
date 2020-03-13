@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sports from './Sports';
 import { Container, Row } from 'react-bootstrap';
 const axios = require('axios');
-const url = `http://localhost:8080/api/getsports/`;
+const url = `https://infinite-refuge-07856.herokuapp.com/api/getsports/`;
 class SportsList extends Component {
 	constructor(props) {
 		super(props);

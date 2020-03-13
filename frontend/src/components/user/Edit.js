@@ -33,7 +33,8 @@ class Edit extends Component {
 			};
 			axios
 				.put(
-					'http://localhost:8080/api/user/' + localStorage.id,
+					'https://infinite-refuge-07856.herokuapp.com/api/user/' +
+						localStorage.id,
 					putObject
 				)
 				.then((res) => {

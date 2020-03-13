@@ -30,7 +30,10 @@ class Login extends Component {
 			email: this.state.email
 		};
 		axios
-			.post('http://localhost:8080/api/user/login', postObject)
+			.post(
+				'https://infinite-refuge-07856.herokuapp.com/api/user/login',
+				postObject
+			)
 			.then((res) => {
 				if (res.data.error) {
 					this.setState({ errors: res.data.error });

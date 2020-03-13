@@ -34,7 +34,9 @@ class App extends React.Component {
 			{ clickedSport, loading: true, formattedGames: [] },
 			async () => {
 				await axios
-					.get(`http://localhost:8080/api/sports/${clickedSport}`)
+					.get(
+						`https://infinite-refuge-07856.herokuapp.com/api/sports/${clickedSport}`
+					)
 					.then((res) => {
 						console.log(res);
 						this.setState({

@@ -7,4 +7,4 @@ Used for people that are looking to find arbitrage betting oppurtunities and the
 
 ### Future improvements
 Using a Mathematical model reading from the CSV that is downloaded from thepredictiontracker to better predict outcomes for spreads on betting oppurtunities.
-
+Adding JWT

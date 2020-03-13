@@ -57,6 +57,7 @@ class App extends React.Component {
 			this.state.home &&
 			!this.state.loading &&
 			localStorage.id;
+		let logInToView = !localStorage.id && this.state.home;
 		return (
 			<div className="App">
 				<Header></Header>
@@ -120,7 +121,7 @@ class App extends React.Component {
 					this.state.formattedGames.map((game, index) => (
 						<Odds key={index} game={game}></Odds>
 					))}
-				{!loadSports && <h3>Log In to see in season sports</h3>}
+				{logInToView && <h3>Log In to see in season sports</h3>}
 			</div>
 		);
 	}
